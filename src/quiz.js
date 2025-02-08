@@ -34,14 +34,25 @@ class Quiz {
         }
     }
 
-    filterQuestionsByDifficulty(){
-        // constructor(difficulty){}
-        
+    filterQuestionsByDifficulty(difficulty){
+        if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3){ // Check if difficulty is a number between 1 and 3
+            return ;
+        }
+        this.questions = this.questions.filter(question => question.difficulty === difficulty); // Update the questions array and filter through
     }
 
     averageDifficulty(){
+    const totalDifficulty = this.questions.reduce((acc, currentValue) => acc + currentValue.difficulty, 0); // Add the total difficulty
+    const count = this.questions.length; // Count the amount of questions
+    return totalDifficulty / count; // Make the calculation of total difficulty / amount of questions
         
     }
 }
 
+//  const sumDifficulty = this.questions.reduce(function(sum, question) {
+//     return sum + question.difficulty;
+
+// }, 0);
+//     return sumDifficulty / this.questions.length;
+// } 
 
