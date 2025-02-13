@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // End view elements
   const resultContainer = document.querySelector("#result");
 
-
   /************  SET VISIBILITY OF VIEWS  ************/
 
   // Show the quiz view (div#quizView) and hide the end view (div#endView)
@@ -75,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // showResults() - Displays the end view and the quiz results
 
 
-
   function showQuestion() {
     // If the quiz has ended, show the results
     if (quiz.hasEnded()) {
@@ -133,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     choiceContainer.appendChild(label);  // Add the label for the radio button to the container
     choiceContainer.appendChild(document.createElement("br"));  // Add a line break after each choice for formatting
 });
+}
 
     // Loop through the current question `choices`.
       // For each choice create a new radio input with a label, and append it to the choice container.
@@ -146,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Hint 2: You can use the `element.type`, `element.name`, and `element.value` properties to set the type, name, and value of an element.
       // Hint 3: You can use the `element.appendChild()` method to append an element to the choices container.
       // Hint 4: You can use the `element.innerText` property to set the inner text of an element.
-  }
+  
 
     function nextButtonHandler () {
     let selectedAnswer; // A variable to store the selected answer value
@@ -169,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         }
       }
-    
       
 
      // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
@@ -200,5 +198,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`;
   }
-  
-});
+
+      // Restart Button
+  let restartButton = document.querySelector("#restartButton");
+  console.log(restartButton);
+      restartButton.addEventListener("click", () => {
+        // Reset quiz state
+        quiz.currentQuestionIndex = 0;
+        quiz.correctAnswers = 0;
+        quiz.shuffleQuestions();
+         // Hide end view and show the quiz view
+        quizView.style.display = "block";
+        endView.style.display = "none";
+        // location.reload();
+         // Show the first question again
+        showQuestion();
+      });
+    });
